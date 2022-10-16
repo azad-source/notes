@@ -7,7 +7,7 @@
         :checked="todo.completed"
       />
       <strong>{{ todo.id }}</strong>
-      {{ todo.title }}
+      {{ uppercasedTitle }}
     </span>
     <button class="rm" @click="$emit('removeTodo', todo.id)">&times;</button>
   </li>
@@ -20,6 +20,11 @@ export default defineComponent({
     todo: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    uppercasedTitle() {
+      return this.todo.title.toUpperCase();
     },
   },
 });
