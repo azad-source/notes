@@ -1,23 +1,28 @@
 <template>
   <li>
     <span v-bind:class="{ done: todo.completed }">
-      <input type="checkbox" v-on:change="$emit('switchTodo', todo.id)" />
+      <input
+        type="checkbox"
+        @change="$emit('switchTodo', todo.id)"
+        :checked="todo.completed"
+      />
       <strong>{{ todo.id }}</strong>
       {{ todo.title }}
     </span>
-    <button class="rm">&times;</button>
+    <button class="rm" @click="$emit('removeTodo', todo.id)">&times;</button>
   </li>
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+export default defineComponent({
   props: {
     todo: {
       type: Object,
       required: true,
     },
   },
-};
+});
 </script>
 
 <style scoped>

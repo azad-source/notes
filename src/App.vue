@@ -1,26 +1,52 @@
 <template>
   <div>
-    <h1>asdasdasdasd</h1>
+    <h1>Todo list</h1>
+    <AddTodo @creatTodo="creatTodo" />
     <hr />
-    <TodoList v-bind:todos="todos" />
+    <TodoList v-bind:todos="todos" @switchTodo="switchTodo" @removeTodo="removeTodo" />
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import TodoList from '@/components/TodoList.vue';
-export default {
+import AddTodo from '@/components/AddTodo.vue';
+type TodoType = {
+  id: string;
+  title: string;
+  completed: boolean;
+};
+export default defineComponent({
   name: 'app',
   components: {
     TodoList,
+    AddTodo,
   },
   data: () => ({
-    todos: [
-      { id: '1', title: 'Купить хлеб', completed: false },
-      { id: '2', title: 'Купить соль', completed: false },
-      { id: '3', title: 'Купить масло', completed: false },
-    ],
+    todos: [] as TodoType[],
   }),
-};
+  mounted() {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=12')
+      .then((response) => response.json())
+      .then((json) => {
+        this.todos = json;
+      });
+  },
+  methods: {
+    switchTodo(id: string) {
+      this.todos = this.todos.map((item: TodoType) => ({
+        ...item,
+        completed: id === item.id ? !item.completed : item.completed,
+      }));
+    },
+    removeTodo(id: string) {
+      this.todos = this.todos.filter((item: TodoType) => id !== item.id);
+    },
+    creatTodo(todo: TodoType) {
+      this.todos.push(todo);
+    },
+  },
+});
 </script>
 
 <style lang="scss">
