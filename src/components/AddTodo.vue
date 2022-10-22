@@ -1,8 +1,14 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <input type="text" v-model="title" />
-    <button type="submit">Create</button>
-  </form>
+  <v-form @submit.prevent="onSubmit">
+    <v-row class="justify-center">
+      <v-col cols="12" md="10">
+        <v-text-field v-model="title" label="task" required />
+      </v-col>
+      <v-col cols="12" md="2">
+        <v-btn type="submit" color="primary" size="x-large">Create</v-btn>
+      </v-col>
+    </v-row>
+  </v-form>
 </template>
 
 <script lang="ts">
@@ -30,14 +36,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-form {
-  display: flex;
-  justify-content: center;
-}
-
-input {
-  width: 400px;
-}
-</style>

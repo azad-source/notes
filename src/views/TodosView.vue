@@ -1,24 +1,24 @@
 <template>
-  <div>
-    <h1>Todo list</h1>
-    <router-link to="/">Go to Home Page</router-link>
-    <br /><br />
-    <AddTodo @creatTodo="creatTodo" />
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not-completed">Not completed</option>
-    </select>
-    <hr />
-    <Loader v-if="loading" />
-    <TodoList
-      v-else-if="filteredTodos.length"
-      :todos="filteredTodos"
-      @switchTodo="switchTodo"
-      @removeTodo="removeTodo"
-    />
-    <p v-else>No todos!</p>
-  </div>
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12" md="10">
+        <AddTodo @creatTodo="creatTodo" />
+      </v-col>
+      <v-col cols="12" md="2">
+        <v-select v-model="filter" :items="filterSelectItems" label="filter" outlined />
+      </v-col>
+      <v-col cols="12">
+        <Loader v-if="loading" />
+        <TodoList
+          v-else-if="filteredTodos.length"
+          :todos="filteredTodos"
+          @switchTodo="switchTodo"
+          @removeTodo="removeTodo"
+        />
+        <p v-else>No todos!</p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -42,7 +42,8 @@ export default defineComponent({
   data: () => ({
     todos: [] as TodoType[],
     loading: true,
-    filter: 'all',
+    filter: 'All',
+    filterSelectItems: ['All', 'Completed', 'Not completed'],
   }),
   mounted() {
     fetch('https://jsonplaceholder.typicode.com/todos?_limit=12')
@@ -60,9 +61,9 @@ export default defineComponent({
   computed: {
     filteredTodos() {
       switch (this.filter) {
-        case 'completed':
+        case 'Completed':
           return this.todos.filter((i) => i.completed);
-        case 'not-completed':
+        case 'Not completed':
           return this.todos.filter((i) => !i.completed);
         default:
           return this.todos;
