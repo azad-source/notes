@@ -1,16 +1,23 @@
 <template>
-  <li>
-    <span v-bind:class="{ done: todo.completed }">
-      <input
-        type="checkbox"
-        @change="$emit('switchTodo', todo.id)"
+  <v-list-item
+    class="mb-3"
+    :class="todo.completed && 'bg-success'"
+    :elevation="todo.completed ? 1 : 6"
+    @click="$emit('switchTodo', todo.id)"
+  >
+    <v-list-item-content class="d-flex"
+      ><v-checkbox
+        :label="todo.title"
+        class="d-flex"
+        color="success"
         :checked="todo.completed"
       />
-      <strong>{{ todo.id }}</strong>
-      {{ uppercasedTitle }}
-    </span>
-    <button class="rm" @click="$emit('removeTodo', todo.id)">&times;</button>
-  </li>
+      <div v-if="todo.completed" class="done bg-white" />
+      <v-btn variant="text" @click="$emit('removeTodo', todo.id)" icon>
+        <v-icon color="error">mdi-beaker-remove</v-icon>
+      </v-btn></v-list-item-content
+    >
+  </v-list-item>
 </template>
 
 <script lang="ts">
@@ -35,22 +42,16 @@ li {
   border: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
+  padding: 0 10px;
   margin-bottom: 1rem;
-}
-
-input {
-  margin-right: 1rem;
-}
-
-.rm {
-  background: red;
-  color: #fff;
-  border-radius: 50%;
-  font-weight: bold;
+  position: relative;
 }
 
 .done {
-  text-decoration: line-through;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
 }
 </style>

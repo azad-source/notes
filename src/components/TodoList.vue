@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <v-list class="px-4">
       <TodoItem
         v-for="todo in todos"
         v-bind:todo="todo"
@@ -8,7 +8,7 @@
         @switchTodo="switchTodo"
         @removeTodo="removeTodo"
       />
-    </ul>
+    </v-list>
   </div>
 </template>
 
@@ -30,11 +30,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-</style>
