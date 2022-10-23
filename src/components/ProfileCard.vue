@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="600" tile>
+  <v-card class="mx-auto" max-width="600" tile elevation="6">
     <v-img
       height="100%"
       cover
@@ -12,7 +12,7 @@
         ></v-img>
       </v-avatar>
       <v-list-item
-        class="text-white"
+        class="text-white my-4"
         title="Azad MAMEDOV"
         subtitle="Frontend Engineer"
       ></v-list-item>
@@ -26,7 +26,8 @@
         link
         color="white"
         target="_blank"
-        ><v-icon>{{ icon }}</v-icon></v-btn
+        size="large"
+        ><v-icon size="large">{{ icon }}</v-icon></v-btn
       >
     </v-img>
   </v-card>
