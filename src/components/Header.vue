@@ -27,6 +27,7 @@ export default defineComponent({
     menuItems: [
       { title: 'Todo List', link: '/', icon: 'mdi-clipboard-list' },
       { title: 'About', link: '/about', icon: 'mdi-information' },
+      { title: 'Contacts', link: '/contacts', icon: 'mdi-contacts' },
     ],
   }),
 });

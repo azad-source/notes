@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import AboutView from '@/views/AboutView.vue';
+import TodosView from '@/views/TodosView.vue';
 
 const routes: RouteRecordRaw[] = [
-  { path: '/about', name: 'About', component: AboutView },
-  { path: '/', name: 'Todo List', component: () => import('@/views/TodosView.vue') },
+  { path: '/', name: 'Todo List', component: TodosView },
+  { path: '/about', name: 'About', component: () => import('@/views/AboutView.vue') },
+  {
+    path: '/contacts',
+    name: 'Contacts',
+    component: () => import('@/views/ContactsView.vue'),
+  },
 ];
 
 export const router = createRouter({
