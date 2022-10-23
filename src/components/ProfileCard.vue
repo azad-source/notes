@@ -8,7 +8,7 @@
       <v-avatar color="rgba(255,255,255,.85)" size="250" rounded="6" class="mt-5">
         <v-img
           cover
-          src="https://azad-source.github.io/CV/dist/static/media/avatar.4af517c3f7aa4cd20697.png"
+          src="https://media-exp1.licdn.com/dms/image/D4D03AQGayo_4hwNegA/profile-displayphoto-shrink_800_800/0/1666544379750?e=1672272000&v=beta&t=_kUx_xT2cpAep4HxrFfrO2CR1UHZi-Gu54w7tDak1QM"
         ></v-img>
       </v-avatar>
       <v-list-item
